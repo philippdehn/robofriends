@@ -33,7 +33,7 @@ class App extends Component {
 		if (!robots.length) {
 			return (
 				<div className='tc'>
-					<h1 classname='f1'>Loading ...</h1>
+					<h1 className='f1'>Loading ...</h1>
 				</div>
 			)
 		} else {
