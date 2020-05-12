@@ -14,16 +14,15 @@ export const setSearchField = (text) => ({
 	payload: text
 })
 
-// assynchronous actions are more complex.
+// assynchronous actions are more complex. 
+// here we need a double function.
+// the function goes to the middleware.
+// redux-thunk first dispatches "pending" to the reducers.
+// when it returns, it dispatches "success" and update the store (changes the state).
 export const requestRobots = () => (dispatch) => {
-	// first dispatch to reducers with type pending (= constant).
 	dispatch({ type: REQUEST_ROBOTS_PENDING });
-	// get the information from the api link.
 	fetch('https://jsonplaceholder.typicode.com/users')
-		// evaluate the response in json format.
 		.then(response => response.json())
-		// if there was data received, dispatch to reducers with type success and the received data as payload (= requested change).
 		.then(data => dispatch({ type: REQUEST_ROBOTS_SUCCESS, payload: data }))
-		// if there was an error received, dispatch to reducers with type fail and the received error as payload.
 		.catch(error => dispatch({ type: REQUEST_ROBOTS_FAIL, payload: error }))
 }
